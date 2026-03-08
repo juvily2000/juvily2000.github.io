@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<title>Bài Kiểm Tra Thường Xuyên</title>
+
+<style>
+body{
+    font-family: Arial;
+    background:#f2f2f2;
+    text-align:center;
+    padding:60px;
+}
+
+.container{
+    background:white;
+    width:420px;
+    margin:auto;
+    padding:30px;
+    border-radius:10px;
+    box-shadow:0 5px 10px rgba(0,0,0,0.1);
+}
+
+h1{
+    color:#333;
+}
+
+input{
+    padding:10px;
+    width:70%;
+    border-radius:5px;
+    border:1px solid #ccc;
+}
+
+button{
+    margin-top:15px;
+    padding:10px 20px;
+    border:none;
+    background:#4a90e2;
+    color:white;
+    border-radius:5px;
+    cursor:pointer;
+}
+
+.card{
+    display:none;
+    margin-top:30px;
+    background:linear-gradient(135deg,#ff9a9e,#fad0c4);
+    padding:25px;
+    border-radius:15px;
+    color:white;
+    font-size:20px;
+}
+
+</style>
+
+</head>
+<body>
+
+<div class="container">
+
+<h1>Bài Kiểm Tra Thường Xuyên 3</h1>
+
+<p>Nhập số thứ tự của bạn:</p>
+
+<input type="number" id="stt" placeholder="Ví dụ: 1">
+<br>
+<button onclick="showCard()">Làm Bài Kiểm Tra</button>
+
+<div class="card" id="card"></div>
+
+</div>
+
+<script>
+
+let danhSach = {
+2: {ten:"Bùi Thị Phương Anh", loiChuc:"Nhân ngày 8/3, chúc Phương Anh luôn xinh đẹp, vui vẻ và tràn đầy năng lượng tích cực. Mong rằng mỗi ngày của bạn đều ngập tràn tiếng cười, gặp nhiều may mắn trong học tập và cuộc sống. Chúc bạn luôn tự tin, mạnh mẽ và đạt được những điều mình mong muốn. Chúc bạn có một ngày 8/3 thật ý nghĩa và hạnh phúc. 🌸💐"},
+3: {ten:"Nguyễn Phạm Quỳnh Anh", loiChuc:"Nhân ngày 8/3, chúc Quỳnh Anh luôn xinh đẹp, vui vẻ và tràn đầy năng lượng tích cực. Mong rằng mỗi ngày của bạn đều ngập tràn tiếng cười, gặp nhiều may mắn trong học tập và cuộc sống. Chúc bạn luôn tự tin, mạnh mẽ và đạt được những điều mình mong muốn. Chúc bạn có một ngày 8/3 thật ý nghĩa và hạnh phúc. 🌸💐"},
+7: {ten:"Phan Ngọc Hân", loiChuc:"Nhân ngày 8/3, chúc Ngọc Hân luôn xinh đẹp, vui vẻ và tràn đầy năng lượng tích cực. Mong rằng mỗi ngày của bạn đều ngập tràn tiếng cười, gặp nhiều may mắn trong học tập và cuộc sống. Chúc bạn luôn tự tin, mạnh mẽ và đạt được những điều mình mong muốn. Chúc bạn có một ngày 8/3 thật ý nghĩa và hạnh phúc. 🌸💐"},
+11: {ten:"Đinh Thị Thanh Huyền", loiChuc:"Nhân ngày 8/3, chúc Thanh Huyền luôn xinh đẹp, vui vẻ và tràn đầy năng lượng tích cực. Mong rằng mỗi ngày của bạn đều ngập tràn tiếng cười, gặp nhiều may mắn trong học tập và cuộc sống. Chúc bạn luôn tự tin, mạnh mẽ và đạt được những điều mình mong muốn. Chúc bạn có một ngày 8/3 thật ý nghĩa và hạnh phúc. 🌸💐"},
+12: {ten:"Nguyễn Thị Thu Hương", loiChuc:"Nhân ngày 8/3, chúc Thu Hương luôn xinh đẹp, vui vẻ và tràn đầy năng lượng tích cực. Mong rằng mỗi ngày của bạn đều ngập tràn tiếng cười, gặp nhiều may mắn trong học tập và cuộc sống. Chúc bạn luôn tự tin, mạnh mẽ và đạt được những điều mình mong muốn. Chúc bạn có một ngày 8/3 thật ý nghĩa và hạnh phúc. 🌸💐"},
+15: {ten:"Hoàng Thuý Kiều", loiChuc:"Nhân ngày 8/3, chúc Thuý Kiều luôn xinh đẹp, vui vẻ và tràn đầy năng lượng tích cực. Mong rằng mỗi ngày của bạn đều ngập tràn tiếng cười, gặp nhiều may mắn trong học tập và cuộc sống. Chúc bạn luôn tự tin, mạnh mẽ và đạt được những điều mình mong muốn. Chúc bạn có một ngày 8/3 thật ý nghĩa và hạnh phúc. 🌸💐"},
+16: {ten:"Bùi Diệu Linh", loiChuc:"Nhân ngày 8/3, chúc Diệu Linh luôn xinh đẹp, vui vẻ và tràn đầy năng lượng tích cực. Mong rằng mỗi ngày của bạn đều ngập tràn tiếng cười, gặp nhiều may mắn trong học tập và cuộc sống. Chúc bạn luôn tự tin, mạnh mẽ và đạt được những điều mình mong muốn. Chúc bạn có một ngày 8/3 thật ý nghĩa và hạnh phúc. 🌸💐"},
+18: {ten:"Vũ Ngọc Mai", loiChuc:"Nhân ngày 8/3, chúc Ngọc Mai luôn xinh đẹp, vui vẻ và tràn đầy năng lượng tích cực. Mong rằng mỗi ngày của bạn đều ngập tràn tiếng cười, gặp nhiều may mắn trong học tập và cuộc sống. Chúc bạn luôn tự tin, mạnh mẽ và đạt được những điều mình mong muốn. Chúc bạn có một ngày 8/3 thật ý nghĩa và hạnh phúc. 🌸💐"},
+20: {ten:"Huỳnh Lê Trúc Ngân", loiChuc:"Nhân ngày 8/3, chúc Trúc Ngân luôn xinh đẹp, vui vẻ và tràn đầy năng lượng tích cực. Mong rằng mỗi ngày của bạn đều ngập tràn tiếng cười, gặp nhiều may mắn trong học tập và cuộc sống. Chúc bạn luôn tự tin, mạnh mẽ và đạt được những điều mình mong muốn. Chúc bạn có một ngày 8/3 thật ý nghĩa và hạnh phúc. 🌸💐"},
+21: {ten:"Huỳnh Tuyết Ngân", loiChuc:"Nhân ngày 8/3, chúc Tuyết Ngân luôn xinh đẹp, vui vẻ và tràn đầy năng lượng tích cực. Mong rằng mỗi ngày của bạn đều ngập tràn tiếng cười, gặp nhiều may mắn trong học tập và cuộc sống. Chúc bạn luôn tự tin, mạnh mẽ và đạt được những điều mình mong muốn. Chúc bạn có một ngày 8/3 thật ý nghĩa và hạnh phúc. 🌸💐"},
+22: {ten:"Phạm Gia Nghi", loiChuc:"Nhân ngày 8/3, chúc Gia Nghi luôn xinh đẹp, vui vẻ và tràn đầy năng lượng tích cực. Mong rằng mỗi ngày của bạn đều ngập tràn tiếng cười, gặp nhiều may mắn trong học tập và cuộc sống. Chúc bạn luôn tự tin, mạnh mẽ và đạt được những điều mình mong muốn. Chúc bạn có một ngày 8/3 thật ý nghĩa và hạnh phúc. 🌸💐"},
+23: {ten:"Võ Mai Như Ngọc", loiChuc:"Nhân ngày 8/3, chúc Như Ngọc luôn xinh đẹp, vui vẻ và tràn đầy năng lượng tích cực. Mong rằng mỗi ngày của bạn đều ngập tràn tiếng cười, gặp nhiều may mắn trong học tập và cuộc sống. Chúc bạn luôn tự tin, mạnh mẽ và đạt được những điều mình mong muốn. Chúc bạn có một ngày 8/3 thật ý nghĩa và hạnh phúc. 🌸💐"},
+24: {ten:"Đoàn Phạm Yến Nhi", loiChuc:"Nhân ngày 8/3, chúc Yến Nhi luôn xinh đẹp, vui vẻ và tràn đầy năng lượng tích cực. Mong rằng mỗi ngày của bạn đều ngập tràn tiếng cười, gặp nhiều may mắn trong học tập và cuộc sống. Chúc bạn luôn tự tin, mạnh mẽ và đạt được những điều mình mong muốn. Chúc bạn có một ngày 8/3 thật ý nghĩa và hạnh phúc. 🌸💐"},
+25: {ten:"Phạm Thị Thảo Nhi", loiChuc:"Nhân ngày 8/3, chúc Thảo Nhi luôn xinh đẹp, vui vẻ và tràn đầy năng lượng tích cực. Mong rằng mỗi ngày của bạn đều ngập tràn tiếng cười, gặp nhiều may mắn trong học tập và cuộc sống. Chúc bạn luôn tự tin, mạnh mẽ và đạt được những điều mình mong muốn. Chúc bạn có một ngày 8/3 thật ý nghĩa và hạnh phúc. 🌸💐"},
+26: {ten:"Dương Tâm Như", loiChuc:"Nhân ngày 8/3, chúc Tâm Như luôn xinh đẹp, vui vẻ và tràn đầy năng lượng tích cực. Mong rằng mỗi ngày của bạn đều ngập tràn tiếng cười, gặp nhiều may mắn trong học tập và cuộc sống. Chúc bạn luôn tự tin, mạnh mẽ và đạt được những điều mình mong muốn. Chúc bạn có một ngày 8/3 thật ý nghĩa và hạnh phúc. 🌸💐"},
+28: {ten:"Nguyễn Quỳnh Phương", loiChuc:"Nhân ngày 8/3, chúc Quỳnh Phương luôn xinh đẹp, vui vẻ và tràn đầy năng lượng tích cực. Mong rằng mỗi ngày của bạn đều ngập tràn tiếng cười, gặp nhiều may mắn trong học tập và cuộc sống. Chúc bạn luôn tự tin, mạnh mẽ và đạt được những điều mình mong muốn. Chúc bạn có một ngày 8/3 thật ý nghĩa và hạnh phúc. 🌸💐"},
+30: {ten:"Nguyễn Thị Thanh Thanh", loiChuc:"Nhân ngày 8/3, chúc Thanh Thanh luôn xinh đẹp, vui vẻ và tràn đầy năng lượng tích cực. Mong rằng mỗi ngày của bạn đều ngập tràn tiếng cười, gặp nhiều may mắn trong học tập và cuộc sống. Chúc bạn luôn tự tin, mạnh mẽ và đạt được những điều mình mong muốn. Chúc bạn có một ngày 8/3 thật ý nghĩa và hạnh phúc. 🌸💐"},
+31: {ten:"Vũ Nguyễn Ý Thiên", loiChuc:"Nhân ngày 8/3, chúc Ý Thiên luôn xinh đẹp, vui vẻ và tràn đầy năng lượng tích cực. Mong rằng mỗi ngày của bạn đều ngập tràn tiếng cười, gặp nhiều may mắn trong học tập và cuộc sống. Chúc bạn luôn tự tin, mạnh mẽ và đạt được những điều mình mong muốn. Chúc bạn có một ngày 8/3 thật ý nghĩa và hạnh phúc. 🌸💐"},
+32: {ten:"Huỳnh Thanh Thuỷ", loiChuc:"Nhân ngày 8/3, chúc Thanh Thuỷ luôn xinh đẹp, vui vẻ và tràn đầy năng lượng tích cực. Mong rằng mỗi ngày của bạn đều ngập tràn tiếng cười, gặp nhiều may mắn trong học tập và cuộc sống. Chúc bạn luôn tự tin, mạnh mẽ và đạt được những điều mình mong muốn. Chúc bạn có một ngày 8/3 thật ý nghĩa và hạnh phúc. 🌸💐"},
+33: {ten:"Hồ Ngọc Minh Thư", loiChuc:"Nhân ngày 8/3, chúc Thanh Huyền luôn xinh đẹp, vui vẻ và tràn đầy năng lượng tích cực. Mong rằng mỗi ngày của bạn đều ngập tràn tiếng cười, gặp nhiều may mắn trong học tập và cuộc sống. Chúc bạn luôn tự tin, mạnh mẽ và đạt được những điều mình mong muốn. Chúc bạn có một ngày 8/3 thật ý nghĩa và hạnh phúc. 🌸💐"},
+34: {ten:"Nguyễn Ngọc Anh Thư", loiChuc:"Nhân ngày 8/3, chúc Anh Thư luôn xinh đẹp, vui vẻ và tràn đầy năng lượng tích cực. Mong rằng mỗi ngày của bạn đều ngập tràn tiếng cười, gặp nhiều may mắn trong học tập và cuộc sống. Chúc bạn luôn tự tin, mạnh mẽ và đạt được những điều mình mong muốn. Chúc bạn có một ngày 8/3 thật ý nghĩa và hạnh phúc. 🌸💐"},
+35: {ten:"Nguyễn Thị Thuỷ Tiên", loiChuc:"Nhân ngày 8/3, chúc Thuỷ Tiên luôn xinh đẹp, vui vẻ và tràn đầy năng lượng tích cực. Mong rằng mỗi ngày của bạn đều ngập tràn tiếng cười, gặp nhiều may mắn trong học tập và cuộc sống. Chúc bạn luôn tự tin, mạnh mẽ và đạt được những điều mình mong muốn. Chúc bạn có một ngày 8/3 thật ý nghĩa và hạnh phúc. 🌸💐"},
+36: {ten:"Nguyễn Thị Kim Tiến", loiChuc:"Nhân ngày 8/3, chúc Kim Tiến luôn xinh đẹp, vui vẻ và tràn đầy năng lượng tích cực. Mong rằng mỗi ngày của bạn đều ngập tràn tiếng cười, gặp nhiều may mắn trong học tập và cuộc sống. Chúc bạn luôn tự tin, mạnh mẽ và đạt được những điều mình mong muốn. Chúc bạn có một ngày 8/3 thật ý nghĩa và hạnh phúc. 🌸💐"},
+37: {ten:"Nguyễn Ngọc Trâm", loiChuc:"Nhân ngày 8/3, chúc Ngọc Trâm luôn xinh đẹp, vui vẻ và tràn đầy năng lượng tích cực. Mong rằng mỗi ngày của bạn đều ngập tràn tiếng cười, gặp nhiều may mắn trong học tập và cuộc sống. Chúc bạn luôn tự tin, mạnh mẽ và đạt được những điều mình mong muốn. Chúc bạn có một ngày 8/3 thật ý nghĩa và hạnh phúc. 🌸💐"},
+38: {ten:"Nguyễn Bảo Trân", loiChuc:"Nhân ngày 8/3, chúc Bảo Trân luôn xinh đẹp, vui vẻ và tràn đầy năng lượng tích cực. Mong rằng mỗi ngày của bạn đều ngập tràn tiếng cười, gặp nhiều may mắn trong học tập và cuộc sống. Chúc bạn luôn tự tin, mạnh mẽ và đạt được những điều mình mong muốn. Chúc bạn có một ngày 8/3 thật ý nghĩa và hạnh phúc. 🌸💐"},
+39: {ten:"Nguyễn Minh Trúc", loiChuc:"Nhân ngày 8/3, chúc Minh Trúc luôn xinh đẹp, vui vẻ và tràn đầy năng lượng tích cực. Mong rằng mỗi ngày của bạn đều ngập tràn tiếng cười, gặp nhiều may mắn trong học tập và cuộc sống. Chúc bạn luôn tự tin, mạnh mẽ và đạt được những điều mình mong muốn. Chúc bạn có một ngày 8/3 thật ý nghĩa và hạnh phúc. 🌸💐"},
+40: {ten:"Phạm Huỳnh Như Trúc", loiChuc:"Nhân ngày 8/3, chúc Như Trúc luôn xinh đẹp, vui vẻ và tràn đầy năng lượng tích cực. Mong rằng mỗi ngày của bạn đều ngập tràn tiếng cười, gặp nhiều may mắn trong học tập và cuộc sống. Chúc bạn luôn tự tin, mạnh mẽ và đạt được những điều mình mong muốn. Chúc bạn có một ngày 8/3 thật ý nghĩa và hạnh phúc. 🌸💐"},
+42: {ten:"Đặng Phan Thanh Vân", loiChuc:"Nhân ngày 8/3, chúc Thanh Vân luôn xinh đẹp, vui vẻ và tràn đầy năng lượng tích cực. Mong rằng mỗi ngày của bạn đều ngập tràn tiếng cười, gặp nhiều may mắn trong học tập và cuộc sống. Chúc bạn luôn tự tin, mạnh mẽ và đạt được những điều mình mong muốn. Chúc bạn có một ngày 8/3 thật ý nghĩa và hạnh phúc. 🌸💐"},
+43: {ten:"Nguyễn Ngọc Yến Vy", loiChuc:"Nhân ngày 8/3, chúc Yến Vy luôn xinh đẹp, vui vẻ và tràn đầy năng lượng tích cực. Mong rằng mỗi ngày của bạn đều ngập tràn tiếng cười, gặp nhiều may mắn trong học tập và cuộc sống. Chúc bạn luôn tự tin, mạnh mẽ và đạt được những điều mình mong muốn. Chúc bạn có một ngày 8/3 thật ý nghĩa và hạnh phúc. 🌸💐"},
+44: {ten:"Trương Triệu Vy", loiChuc:"Nhân ngày 8/3, chúc Triệu Vy luôn xinh đẹp, vui vẻ và tràn đầy năng lượng tích cực. Mong rằng mỗi ngày của bạn đều ngập tràn tiếng cười, gặp nhiều may mắn trong học tập và cuộc sống. Chúc bạn luôn tự tin, mạnh mẽ và đạt được những điều mình mong muốn. Chúc bạn có một ngày 8/3 thật ý nghĩa và hạnh phúc. 🌸💐"},
+45: {ten:"Đỗ Thị Yến Yến", loiChuc:"Nhân ngày 8/3, chúc Yến Yến luôn xinh đẹp, vui vẻ và tràn đầy năng lượng tích cực. Mong rằng mỗi ngày của bạn đều ngập tràn tiếng cười, gặp nhiều may mắn trong học tập và cuộc sống. Chúc bạn luôn tự tin, mạnh mẽ và đạt được những điều mình mong muốn. Chúc bạn có một ngày 8/3 thật ý nghĩa và hạnh phúc. 🌸💐"}
+};
+
+function showCard(){
+
+let stt = document.getElementById("stt").value;
+let card = document.getElementById("card");
+
+if(danhSach[stt]){
+    card.style.display = "block";
+    card.innerHTML = 
+    "<h2>💐 Chúc mừng 8/3 " + danhSach[stt].ten + " 💐</h2>" +
+    "<p>" + danhSach[stt].loiChuc + "</p>";
+}
+else{
+    card.style.display = "block";
+    card.innerHTML = "❌ Không tìm thấy số thứ tự!";
+}
+
+}
+
+</script>
+
+</body>
+</html>
